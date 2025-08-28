@@ -2,176 +2,220 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Code Maker — HTML/CSS/JS/PHP</title>
+<title>Student Hub Code Maker</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/material-darker.min.css">
 <style>
-body,html{margin:0;padding:0;height:100%;font-family:Arial, monospace;background:#0b0f14;color:#cbd5df;}
-.container{display:flex;height:100%;}
-.sidebar{width:260px;background:#10161b;padding:12px;display:flex;flex-direction:column;gap:8px;box-sizing:border-box;}
-.sidebar h2{margin:0;font-size:16px;}
-input[type=text]{padding:8px;border-radius:6px;border:1px solid #222;background:#071014;color:#cbd5df;width:100%;}
-.project-item{padding:8px;background:#0f1520;border-radius:6px;display:flex;justify-content:space-between;cursor:pointer;margin-bottom:6px;}
-.project-item:hover{background:#16202a;}
-.editor-wrap{flex:1;display:flex;flex-direction:column;min-width:0;}
-.tabs{display:flex;background:#10161b;border-bottom:1px solid #12161a;}
-.tab{flex:1;padding:10px;text-align:center;cursor:pointer;}
-.tab.active{border-bottom:3px solid #58a6ff;}
-.editor{flex:1;display:none;position:relative;min-height:0;}
-.editor.active{display:block;}
-.buttons{display:flex;gap:8px;padding:10px;background:#10161b;}
-button{padding:8px 10px;border-radius:6px;border:none;background:#238636;color:white;cursor:pointer;}
-button.warn{background:#bf4b4b;}
-.CodeMirror{height:100%;font-size:13px;}
-.preview-container{height:40%;display:flex;flex-direction:column;transition:height .2s ease;}
-.preview-container.collapsed{height:0;}
-iframe{flex:1;border:1px solid #111;background:white;}
-#htmlErrors{position:absolute;left:0;right:0;bottom:0;background:#2a1515;color:#ffb3b3;padding:6px;font-size:12px;max-height:120px;overflow:auto;}
-.note{font-size:12px;color:#9aa3b2;}
+  body { margin:0; font-family: Arial, monospace; display:flex; height:100vh; background:#0d1117; color:#c9d1d9; }
+  .sidebar { width:200px; background:#161b22; padding:10px; display:flex; flex-direction:column; }
+  .sidebar h2 { margin:0 0 10px; font-size:16px; }
+  .project-item { padding:6px 10px; border-radius:6px; cursor:pointer; margin-bottom:4px; background:#21262d; display:flex; justify-content:space-between; align-items:center; }
+  .project-item:hover { background:#30363d; }
+  .editor-container { flex:1; display:flex; flex-direction:column; }
+  .tabs { display:flex; background:#161b22; }
+  .tab { flex:1; padding:10px; text-align:center; cursor:pointer; border-bottom:2px solid transparent; }
+  .tab.active { border-bottom:2px solid #58a6ff; }
+  .editor { flex:1; display:none; position:relative; }
+  .editor.active { display:block; }
+  .buttons { padding:5px 10px; background:#161b22; display:flex; gap:5px; }
+  button { background:#238636; color:white; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
+  button:hover { background:#2ea043; }
+  input { padding:5px; margin:5px 0; border-radius:5px; border:none; background:#0d1117; color:#c9d1d9; }
+  .CodeMirror { height:100%; font-size:14px; }
+  #htmlErrors { position:absolute; bottom:0; left:0; right:0; background:#1f242b; color:#ff6c6b; padding:4px 8px; font-size:12px; max-height:80px; overflow:auto; }
+  .preview-container { flex:1; display:flex; flex-direction:column; transition:flex 0.3s ease; }
+  .preview-container.collapsed { flex:0; }
+  iframe { flex:1; border:none; background:white; }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="sidebar">
-    <h2>Projects</h2>
-    <div id="projectList" style="overflow:auto;max-height:55vh"></div>
-    <input id="projectName" placeholder="Project name (my-site)">
-    <div style="display:flex;gap:8px">
-      <button onclick="saveProject()">💾 Save</button>
-      <button onclick="exportZip()">📦 Export ZIP</button>
-    </div>
-    <button class="warn" onclick="clearAll()">🗑 Clear All</button>
-    <div class="note">PHP will not execute in preview; it will display as code.</div>
+
+<div class="sidebar">
+  <h2>Projects</h2>
+  <div id="projectList"></div>
+  <input id="projectName" type="text" placeholder="New project name">
+  <button onclick="saveProject()">💾 Save</button>
+</div>
+
+<div class="editor-container">
+  <div class="tabs">
+    <div class="tab active" data-tab="html">HTML</div>
+    <div class="tab" data-tab="css">CSS</div>
+    <div class="tab" data-tab="js">JS</div>
+    <div class="tab" data-tab="php">PHP</div>
   </div>
 
-  <div class="editor-wrap">
-    <div class="tabs">
-      <div class="tab active" data-tab="html">HTML</div>
-      <div class="tab" data-tab="css">CSS</div>
-      <div class="tab" data-tab="js">JS</div>
-      <div class="tab" data-tab="php">PHP</div>
-    </div>
-
-    <div id="html" class="editor active">
-      <textarea id="htmlCode"><!— Type HTML here —></textarea>
-      <div id="htmlErrors"></div>
-    </div>
-    <div id="css" class="editor"><textarea id="cssCode">/* CSS here */</textarea></div>
-    <div id="js" class="editor"><textarea id="jsCode">// JS here</textarea></div>
-    <div id="php" class="editor"><textarea id="phpCode"><?php
-// PHP code here
+  <div id="html" class="editor active">
+    <textarea id="htmlCode"><!—RV Cording html here-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RV Coding Webpage</title>
+</head>
+<body>
+<h1>Welcome to RV Coding</h1>
+<p>ICT With Ravindu.</p>
+</body>
+</html>
+</textarea>
+    <div id="htmlErrors"></div>
+  </div>
+  <div id="css" class="editor"><textarea id="cssCode">/*RV Cording css here*/ h1{color:red;}</textarea></div>
+  <div id="js" class="editor"><textarea id="jsCode">//RV Cording JS here</textarea></div>
+  <div id="php" class="editor"><textarea id="phpCode"><?php
+// RV Cording PHP here
 ?></textarea></div>
 
-    <div class="buttons">
-      <button onclick="runPreview()">▶ Preview</button>
-      <button onclick="togglePreview()">🖥 Toggle Preview</button>
-    </div>
+  <div class="buttons">
+    <button onclick="runCode()">▶ Run</button>
+    <button onclick="togglePreview()">🖥 Preview</button>
+    <button onclick="openPreviewTab()">🔗 Open in New Tab</button>
+  </div>
 
-    <div class="preview-container" id="previewContainer">
-      <iframe id="output"></iframe>
-    </div>
+  <div class="preview-container" id="previewContainer">
+    <iframe id="output"></iframe>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/php/php.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/closetag.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/matchbrackets.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
 <script>
+// Tab switching
 const tabs = document.querySelectorAll('.tab');
 const editorsDiv = document.querySelectorAll('.editor');
-tabs.forEach(tab=>{
-  tab.addEventListener('click', ()=>{
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
     tabs.forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     editorsDiv.forEach(e=>e.classList.remove('active'));
     document.getElementById(tab.dataset.tab).classList.add('active');
-    setTimeout(()=>{ htmlEditor.refresh(); cssEditor.refresh(); jsEditor.refresh(); phpEditor.refresh(); },60)
+    htmlEditor.refresh(); cssEditor.refresh(); jsEditor.refresh(); phpEditor.refresh();
   });
 });
 
+// Initialize CodeMirror editors
 const commonOpts = { theme:'material-darker', lineNumbers:true, matchBrackets:true, indentUnit:2, tabSize:2 };
-const htmlEditor = CodeMirror.fromTextArea(document.getElementById('htmlCode'), Object.assign({}, commonOpts, { mode:'xml', autoCloseTags:true }));
-const cssEditor  = CodeMirror.fromTextArea(document.getElementById('cssCode'), Object.assign({}, commonOpts, { mode:'css' }));
-const jsEditor   = CodeMirror.fromTextArea(document.getElementById('jsCode'), Object.assign({}, commonOpts, { mode:'javascript' }));
-const phpEditor  = CodeMirror.fromTextArea(document.getElementById('phpCode'), Object.assign({}, commonOpts, { mode:'application/x-httpd-php' }));
+const htmlEditor = CodeMirror.fromTextArea(document.getElementById('htmlCode'), {...commonOpts, mode:'xml', autoCloseTags:true});
+const cssEditor  = CodeMirror.fromTextArea(document.getElementById('cssCode'), {...commonOpts, mode:'css'});
+const jsEditor   = CodeMirror.fromTextArea(document.getElementById('jsCode'), {...commonOpts, mode:'javascript'});
+const phpEditor  = CodeMirror.fromTextArea(document.getElementById('phpCode'), {...commonOpts, mode:'application/x-httpd-php'});
 
-function validateHTML(str){
-  const tagPattern = /<\/?([a-zA-Z][\w:-]*)\b[^>]*>/g;
-  const selfClosing = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
-  const stack = []; const errors = [];
-  let m;
-  while((m=tagPattern.exec(str))!==null){
-    const raw=m[0], tag=m[1].toLowerCase();
-    if(raw.startsWith('</')){
-      if(stack.length===0 || stack[stack.length-1]!==tag){errors.push(`Mismatched closing tag </${tag}> at index ${m.index}`);} 
+// HTML validation for nested tags
+htmlEditor.on("change", ()=>{
+  const value = htmlEditor.getValue();
+  const errors=[];
+  const stack=[];
+  const tagPattern=/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*>/g;
+  let match;
+  while((match=tagPattern.exec(value))!==null){
+    const tag = match[1];
+    if(match[0][1]!=='/') stack.push(tag);
+    else{
+      if(stack.length===0 || stack[stack.length-1]!==tag) errors.push(`Mismatched closing tag </${tag}> at position ${match.index}`);
       else stack.pop();
-    } else {
-      if(!raw.endsWith('/>') && !selfClosing.has(tag)) stack.push(tag);
     }
   }
-  stack.reverse().forEach(t=>errors.push(`Unclosed tag <${t}>`));
-  return errors;
+  stack.forEach(t=>errors.push(`Unclosed tag <${t}>`));
+  document.getElementById('htmlErrors').innerHTML=errors.join('<br>');
+});
+
+// Run code
+function runCode(){
+  const html=htmlEditor.getValue();
+  const css="<style>"+cssEditor.getValue()+"</style>";
+  const js="<script>"+jsEditor.getValue()+"<\/script>";
+  const php="<pre style='background:#f6f8fa;color:#111;padding:8px;'><?php\n"+phpEditor.getValue().replace(/</g,'&lt;').replace(/>/g,'&gt;')+"\n?></pre>";
+  const output=document.getElementById('output').contentWindow.document;
+  output.open();
+  output.write(html+css+js+php);
+  output.close();
 }
-htmlEditor.on('change',()=>{ document.getElementById('htmlErrors').innerHTML = validateHTML(htmlEditor.getValue()).join('<br>'); });
 
-function runPreview(){
-  const html = htmlEditor.getValue();
-  const css = '<style>'+cssEditor.getValue()+'</style>';
-  const js = '<script>'+jsEditor.getValue()+'<\/script>';
-  const php = phpEditor.getValue();
-  let out = `<div style="padding:8px;background:#ffecec;color:#800;"><strong>PHP code:</strong> Displayed only, not executed.</div>${html}${css}${js}<pre style="background:#f6f8fa;color:#111;padding:8px;">${php.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`;
-  const doc = document.getElementById('output').contentDocument || document.getElementById('output').contentWindow.document;
-  doc.open(); doc.write(out); doc.close();
+// Collapse/Expand Preview
+function togglePreview(){
+  const container=document.getElementById('previewContainer');
+  container.classList.toggle('collapsed');
 }
 
-function togglePreview(){document.getElementById('previewContainer').classList.toggle('collapsed');}
+// Open preview in new tab
+function openPreviewTab(){
+  const html=htmlEditor.getValue();
+  const css="<style>"+cssEditor.getValue()+"</style>";
+  const js="<script>"+jsEditor.getValue()+"</script>";
+  const php="<pre><?php\n"+phpEditor.getValue()+"\n?></pre>";
+  const newTab=window.open();
+  newTab.document.open();
+  newTab.document.write(html+css+js+php);
+  newTab.document.close();
+}
 
+// Save/load projects
 function saveProject(){
-  const name = document.getElementById('projectName').value.trim();
+  const name=document.getElementById('projectName').value.trim();
   if(!name){alert('Enter project name');return;}
-  const p = { html: htmlEditor.getValue(), css: cssEditor.getValue(), js: jsEditor.getValue(), php: phpEditor.getValue() };
-  localStorage.setItem('project_'+name, JSON.stringify(p));
+  const project={
+    html: htmlEditor.getValue(),
+    css: cssEditor.getValue(),
+    js: jsEditor.getValue(),
+    php: phpEditor.getValue()
+  };
+  localStorage.setItem('project_'+name, JSON.stringify(project));
   loadProjects();
-  alert('Saved: '+name);
+  alert('Project saved!');
 }
 
 function loadProjects(){
-  const list = document.getElementById('projectList'); list.innerHTML='';
-  Object.keys(localStorage).forEach(k=>{
-    if(!k.startsWith('project_')) return;
-    const name = k.replace('project_','');
-    const div = document.createElement('div'); div.className='project-item';
-    const span = document.createElement('span'); span.textContent=name; span.style.flex='1'; span.onclick=()=>openProject(name);
-    div.appendChild(span);
-    const del = document.createElement('button'); del.textContent='🗑'; del.onclick=(e)=>{e.stopPropagation(); if(confirm('Delete '+name+'?')){ localStorage.removeItem(k); loadProjects(); }};
-    div.appendChild(del); list.appendChild(div);
+  const list=document.getElementById('projectList');
+  list.innerHTML='';
+  Object.keys(localStorage).forEach(key=>{
+    if(key.startsWith('project_')){
+      const name=key.replace('project_','');
+      const div=document.createElement('div');
+      div.className='project-item';
+      const span=document.createElement('span');
+      span.textContent=name;
+      span.style.cursor='pointer';
+      span.onclick=()=>openProject(name);
+      div.appendChild(span);
+      const delBtn=document.createElement('button');
+      delBtn.textContent='🗑';
+      delBtn.style.background='#bf4b4b';
+      delBtn.style.border='none';
+      delBtn.style.color='white';
+      delBtn.style.borderRadius='4px';
+      delBtn.style.cursor='pointer';
+      delBtn.onclick=e=>{e.stopPropagation();if(confirm(`Delete project "${name}"?`)){localStorage.removeItem('project_'+name);loadProjects();}};
+      div.appendChild(delBtn);
+      list.appendChild(div);
+    }
   });
 }
+
 function openProject(name){
-  const p = JSON.parse(localStorage.getItem('project_'+name));
-  document.getElementById('projectName').value=name;
-  htmlEditor.setValue(p.html||''); cssEditor.setValue(p.css||''); jsEditor.setValue(p.js||''); phpEditor.setValue(p.php||'');
-  setTimeout(()=>{ htmlEditor.refresh(); cssEditor.refresh(); jsEditor.refresh(); phpEditor.refresh(); },50);
-  runPreview();
-}
-function clearAll(){ if(!confirm('Delete all saved projects?')) return; Object.keys(localStorage).forEach(k=>{ if(k.startsWith('project_')) localStorage.removeItem(k); }); loadProjects();}
-function exportZip(){
-  const name = document.getElementById('projectName').value.trim()||'project';
-  const zip = new JSZip();
-  const php = phpEditor.getValue(), html = htmlEditor.getValue(), css = cssEditor.getValue(), js = jsEditor.getValue();
-  if(php){ zip.file('index.php', `<?php\n${php}\n?>\n${html}\n<link rel="stylesheet" href="style.css">\n<script src="script.js"></script>`); }
-  else{ zip.file('index.html', `${html}\n<link rel="stylesheet" href="style.css">\n<script src="script.js"></script>`);}
-  zip.file('style.css', css||''); zip.file('script.js', js||'');
-  zip.generateAsync({type:'blob'}).then(blob=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name+'.zip'; a.click(); URL.revokeObjectURL(a.href); });
+  const data=localStorage.getItem('project_'+name);
+  if(data){
+    const project=JSON.parse(data);
+    document.getElementById('projectName').value=name;
+    htmlEditor.setValue(project.html);
+    cssEditor.setValue(project.css);
+    jsEditor.setValue(project.js);
+    phpEditor.setValue(project.php);
+    runCode();
+  }
 }
 
-loadProjects(); runPreview();
+// Initialize
+loadProjects();
+runCode();
 </script>
+
 </body>
 </html>
