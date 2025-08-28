@@ -6,85 +6,82 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/material-darker.min.css">
 <style>
-body { margin:0; font-family: Arial, monospace; display:flex; height:100vh; background:#0d1117; color:#c9d1d9; }
-.sidebar { width:200px; background:#161b22; padding:10px; display:flex; flex-direction:column; }
-.sidebar h2 { margin:0 0 10px; font-size:16px; }
-.project-item { padding:6px 10px; border-radius:6px; cursor:pointer; margin-bottom:4px; background:#21262d; display:flex; justify-content:space-between; align-items:center; }
-.project-item:hover { background:#30363d; }
-.editor-container { flex:1; display:flex; flex-direction:column; }
-.tabs { display:flex; background:#161b22; }
-.tab { flex:1; padding:10px; text-align:center; cursor:pointer; border-bottom:2px solid transparent; }
-.tab.active { border-bottom:2px solid #58a6ff; }
-.editor { flex:1; display:none; position:relative; }
-.editor.active { display:block; }
-.buttons { padding:5px 10px; background:#161b22; display:flex; gap:5px; }
-button { background:#238636; color:white; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
-button:hover { background:#2ea043; }
-input { padding:5px; margin:5px 0; border-radius:5px; border:none; background:#0d1117; color:#c9d1d9; }
-.CodeMirror { height:100%; font-size:14px; }
-#htmlErrors { position:absolute; bottom:0; left:0; right:0; background:#1f242b; color:#ff6c6b; padding:4px 8px; font-size:12px; max-height:80px; overflow:auto; }
-.preview-container { flex:1; display:flex; flex-direction:column; transition:flex 0.3s ease; }
-.preview-container.collapsed { flex:0; }
-iframe { flex:1; border:none; background:white; }
+  body { margin:0; font-family: Arial, monospace; display:flex; height:100vh; background:#0d1117; color:#c9d1d9; }
+  .sidebar { width:200px; background:#161b22; padding:10px; display:flex; flex-direction:column; }
+  .sidebar h2 { margin:0 0 10px; font-size:16px; }
+  .project-item { padding:6px 10px; border-radius:6px; cursor:pointer; margin-bottom:4px; background:#21262d; display:flex; justify-content:space-between; align-items:center; }
+  .project-item:hover { background:#30363d; }
+  .editor-container { flex:1; display:flex; flex-direction:column; }
+  .tabs { display:flex; background:#161b22; }
+  .tab { flex:1; padding:10px; text-align:center; cursor:pointer; border-bottom:2px solid transparent; }
+  .tab.active { border-bottom:2px solid #58a6ff; }
+  .editor { flex:1; display:none; position:relative; }
+  .editor.active { display:block; }
+  .buttons { padding:5px 10px; background:#161b22; display:flex; gap:5px; }
+  button { background:#238636; color:white; border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
+  button:hover { background:#2ea043; }
+  input { padding:5px; margin:5px 0; border-radius:5px; border:none; background:#0d1117; color:#c9d1d9; }
+  .CodeMirror { height:100%; font-size:14px; }
+  #htmlErrors { position:absolute; bottom:0; left:0; right:0; background:#1f242b; color:#ff6c6b; padding:4px 8px; font-size:12px; max-height:80px; overflow:auto; }
+  .preview-container { flex:1; display:flex; flex-direction:column; transition:flex 0.3s ease; }
+  .preview-container.collapsed { flex:0; }
+  iframe { flex:1; border:none; background:white; }
 </style>
 </head>
 <body>
 
 <div class="sidebar">
-<h2>Projects</h2>
-<div id="projectList"></div>
-<input id="projectName" type="text" placeholder="New project name">
-<button onclick="saveProject()">💾 Save</button>
+  <h2>Projects</h2>
+  <div id="projectList"></div>
+  <input id="projectName" type="text" placeholder="New project name">
+  <button onclick="saveProject()">💾 Save</button>
 </div>
 
 <div class="editor-container">
-<div class="tabs">
-<div class="tab active" data-tab="html">HTML</div>
-<div class="tab" data-tab="css">CSS</div>
-<div class="tab" data-tab="js">JS</div>
-<div class="tab" data-tab="php">PHP</div>
-</div>
+  <div class="tabs">
+    <div class="tab active" data-tab="html">HTML</div>
+    <div class="tab" data-tab="css">CSS</div>
+    <div class="tab" data-tab="js">JS</div>
+  </div>
 
-<div id="html" class="editor active">
-<textarea id="htmlCode"><!—HTML code here-->
+  <div id="html" class="editor active">
+    <textarea id="htmlCode"> <!--RV Cording html here-->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RV Coding Webpage</title>
-</head>
-<body>
-<h1>Welcome to RV Coding</h1>
-<p>ICT With Ravindu.</p>
-</body>
-</html>
-</textarea>
-<div id="htmlErrors"></div>
-</div>
+  <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RV Coding Webpage</title>
+      </head>
+      <body>
+      
+        <h1>Welcome to RV Coding </h1>
+        <p>ICT With Ravindu.</p>
+      
+      </body>
+  </html>
+      </textarea>
+    <div id="htmlErrors"></div>
+  </div>
+  <div id="css" class="editor"><textarea id="cssCode">/*Rv cording css here*/
+    h1{color:red;}</textarea></div>
+  <div id="js" class="editor"><textarea id="jsCode">//RV Cording JS here</textarea></div>
 
-<div id="css" class="editor"><textarea id="cssCode">/*CSS code here*/ h1{color:red;}</textarea></div>
-<div id="js" class="editor"><textarea id="jsCode">//JS code here</textarea></div>
-<div id="php" class="editor"><textarea id="phpCode"><?php
-//PHP code here
-?></textarea></div>
+  <div class="buttons">
+    <button onclick="runCode()">▶ Run</button>
+    <button onclick="togglePreview()">🖥 Preview</button>
+    <button onclick="openPreviewTab()">🔗 Open in New Tab</button>
+  </div>
 
-<div class="buttons">
-<button onclick="runCode()">▶ Run</button>
-<button onclick="togglePreview()">🖥 Preview</button>
-<button onclick="openPreviewTab()">🔗 Open in New Tab</button>
-</div>
-
-<div class="preview-container" id="previewContainer">
-<iframe id="output"></iframe>
-</div>
+  <div class="preview-container" id="previewContainer">
+    <iframe id="output"></iframe>
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/php/php.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/closetag.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/matchbrackets.min.js"></script>
 
@@ -92,27 +89,35 @@ iframe { flex:1; border:none; background:white; }
 // Tab switching
 const tabs = document.querySelectorAll('.tab');
 const editorsDiv = document.querySelectorAll('.editor');
-tabs.forEach(tab=>{
-  tab.addEventListener('click', ()=>{
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
     tabs.forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     editorsDiv.forEach(e=>e.classList.remove('active'));
     document.getElementById(tab.dataset.tab).classList.add('active');
-    htmlEditor.refresh(); cssEditor.refresh(); jsEditor.refresh(); phpEditor.refresh();
+    if(tab.dataset.tab==='html') htmlEditor.refresh();
+    if(tab.dataset.tab==='css') cssEditor.refresh();
+    if(tab.dataset.tab==='js') jsEditor.refresh();
   });
 });
 
-// Initialize editors
-const commonOpts = { theme:'material-darker', lineNumbers:true, matchBrackets:true, indentUnit:2, tabSize:2 };
-const htmlEditor = CodeMirror.fromTextArea(document.getElementById('htmlCode'), {...commonOpts, mode:'xml', autoCloseTags:true});
-const cssEditor  = CodeMirror.fromTextArea(document.getElementById('cssCode'), {...commonOpts, mode:'css'});
-const jsEditor   = CodeMirror.fromTextArea(document.getElementById('jsCode'), {...commonOpts, mode:'javascript'});
-const phpEditor  = CodeMirror.fromTextArea(document.getElementById('phpCode'), {...commonOpts, mode:'application/x-httpd-php'});
+// Initialize CodeMirror editors
+const htmlEditor = CodeMirror.fromTextArea(document.getElementById('htmlCode'), {
+  mode:'xml', theme:'material-darker', lineNumbers:true, autoCloseTags:true, matchBrackets:true, indentUnit:2
+});
+const cssEditor = CodeMirror.fromTextArea(document.getElementById('cssCode'), {
+  mode:'css', theme:'material-darker', lineNumbers:true, matchBrackets:true, indentUnit:2
+});
+const jsEditor = CodeMirror.fromTextArea(document.getElementById('jsCode'), {
+  mode:'javascript', theme:'material-darker', lineNumbers:true, matchBrackets:true, indentUnit:2
+});
 
 // HTML validation for nested tags
-htmlEditor.on("change", ()=>{
+htmlEditor.on("change",()=>{
   const value=htmlEditor.getValue();
-  const errors=[]; const stack=[]; const tagPattern=/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*>/g;
+  const errors=[];
+  const stack=[];
+  const tagPattern=/<\/?([a-zA-Z][a-zA-Z0-9]*)\b[^>]*>/g;
   let match;
   while((match=tagPattern.exec(value))!==null){
     const tag=match[1];
@@ -130,50 +135,63 @@ htmlEditor.on("change", ()=>{
 function runCode(){
   const html=htmlEditor.getValue();
   const css="<style>"+cssEditor.getValue()+"</style>";
-  const js="<script>"+jsEditor.getValue()+"</script>";
-  const php="<pre style='background:#f6f8fa;color:#111;padding:8px;'>&lt;?php\n"+phpEditor.getValue().replace(/</g,'&lt;').replace(/>/g,'&gt;')+"\n?&gt;</pre>";
+  const js="<script>"+jsEditor.getValue()+"<\/script>";
   const output=document.getElementById('output').contentWindow.document;
   output.open();
-  output.write(html+css+js+php);
+  output.write(html+css+js);
   output.close();
 }
 
-// Collapse/expand preview
-function togglePreview(){ document.getElementById('previewContainer').classList.toggle('collapsed'); }
+// Collapse/Expand Preview
+function togglePreview(){
+  const container=document.getElementById('previewContainer');
+  container.classList.toggle('collapsed');
+}
 
 // Open preview in new tab
 function openPreviewTab(){
   const html=htmlEditor.getValue();
   const css="<style>"+cssEditor.getValue()+"</style>";
-  const js="<script>"+jsEditor.getValue()+"</script>";
-  const php="<pre>&lt;?php\n"+phpEditor.getValue()+"\n?&gt;</pre>";
+  const js="<script>"+jsEditor.getValue()+"<\/script>";
   const newTab=window.open();
   newTab.document.open();
-  newTab.document.write(html+css+js+php);
+  newTab.document.write(html+css+js);
   newTab.document.close();
 }
 
 // Save/load projects
 function saveProject(){
   const name=document.getElementById('projectName').value.trim();
-  if(!name){alert('Enter project name'); return;}
-  const project={ html:htmlEditor.getValue(), css:cssEditor.getValue(), js:jsEditor.getValue(), php:phpEditor.getValue() };
-  localStorage.setItem('project_'+name, JSON.stringify(project));
-  loadProjects(); alert('Project saved!');
+  if(!name){alert('Enter project name');return;}
+  const project={html:htmlEditor.getValue(),css:cssEditor.getValue(),js:jsEditor.getValue()};
+  localStorage.setItem('project_'+name,JSON.stringify(project));
+  loadProjects();
+  alert('Project saved!');
 }
 
 function loadProjects(){
-  const list=document.getElementById('projectList'); list.innerHTML='';
+  const list=document.getElementById('projectList');
+  list.innerHTML='';
   Object.keys(localStorage).forEach(key=>{
     if(key.startsWith('project_')){
       const name=key.replace('project_','');
-      const div=document.createElement('div'); div.className='project-item';
-      const span=document.createElement('span'); span.textContent=name; span.style.cursor='pointer';
-      span.onclick=()=>openProject(name); div.appendChild(span);
-      const delBtn=document.createElement('button'); delBtn.textContent='🗑';
-      delBtn.style.background='#bf4b4b'; delBtn.style.border='none'; delBtn.style.color='white'; delBtn.style.borderRadius='4px'; delBtn.style.cursor='pointer';
-      delBtn.onclick=e=>{ e.stopPropagation(); if(confirm(`Delete project "${name}"?`)){ localStorage.removeItem('project_'+name); loadProjects(); } };
-      div.appendChild(delBtn); list.appendChild(div);
+      const div=document.createElement('div');
+      div.className='project-item';
+      const span=document.createElement('span');
+      span.textContent=name;
+      span.style.cursor='pointer';
+      span.onclick=()=>openProject(name);
+      div.appendChild(span);
+      const delBtn=document.createElement('button');
+      delBtn.textContent='🗑';
+      delBtn.style.background='#bf4b4b';
+      delBtn.style.border='none';
+      delBtn.style.color='white';
+      delBtn.style.borderRadius='4px';
+      delBtn.style.cursor='pointer';
+      delBtn.onclick=e=>{e.stopPropagation();if(confirm(`Delete project "${name}"?`)){localStorage.removeItem('project_'+name);loadProjects();}};
+      div.appendChild(delBtn);
+      list.appendChild(div);
     }
   });
 }
@@ -186,13 +204,14 @@ function openProject(name){
     htmlEditor.setValue(project.html);
     cssEditor.setValue(project.css);
     jsEditor.setValue(project.js);
-    phpEditor.setValue(project.php);
     runCode();
   }
 }
 
 // Initialize
-loadProjects(); runCode();
+loadProjects();
+runCode();
 </script>
+
 </body>
 </html>
